@@ -1,0 +1,58 @@
+diff --git a/node_modules/react-native-multiple-select/lib/react-native-multi-select.js b/node_modules/react-native-multiple-select/lib/react-native-multi-select.js
+index 9b7a0d7..83a3891 100644
+--- a/node_modules/react-native-multiple-select/lib/react-native-multi-select.js
++++ b/node_modules/react-native-multiple-select/lib/react-native-multi-select.js
+@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
+ import reject from 'lodash/reject';
+ import find from 'lodash/find';
+ import get from 'lodash/get';
+-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
++import Icon from 'react-native-vector-icons/FontAwesome';
+ 
+ import styles, { colorPack } from './styles';
+ import nodeTypes from './helpers/nodeTypes';
+@@ -25,7 +25,7 @@ if (UIManager.setLayoutAnimationEnabledExperimental) {
+ 
+ const defaultSearchIcon = (
+   <Icon
+-    name="magnify"
++    name="search"
+     size={20}
+     color={colorPack.placeholderTextColor}
+     style={{ marginRight: 10 }}
+@@ -227,7 +227,7 @@ export default class MultiSelect extends Component {
+             }}
+           >
+             <Icon
+-              name="close-circle"
++              name="times-circle-o"
+               style={{
+                 color: tagRemoveIconColor,
+                 fontSize: 22,
+@@ -614,7 +614,7 @@ export default class MultiSelect extends Component {
+               {hideSubmitButton && (
+                 <TouchableOpacity onPress={this._submitSelection}>
+                   <Icon
+-                    name="menu-down"
++                    name="caret-down"
+                     style={[
+                       styles.indicator,
+                       { paddingLeft: 15, paddingRight: 15 },
+@@ -625,7 +625,7 @@ export default class MultiSelect extends Component {
+               )}
+               {!hideDropdown && (
+                 <Icon
+-                  name="arrow-left"
++                  name="caret-left"
+                   size={20}
+                   onPress={this._clearSelectorCallback}
+                   color={colorPack.placeholderTextColor}
+@@ -718,7 +718,7 @@ export default class MultiSelect extends Component {
+                       {this._getSelectLabel()}
+                     </Text>
+                     <Icon
+-                      name={hideSubmitButton ? 'menu-right' : 'menu-down'}
++                      name={hideSubmitButton ? 'caret-right' : 'caret-down'}
+                       style={[
+                         styles.indicator,
+                         styleIndicator && styleIndicator,

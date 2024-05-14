@@ -1,0 +1,5 @@
+{
+  "name": "peopleSol",
+  "displayName": "PeopleSol",
+  "plugins": ["react-native-compressor"]
+}

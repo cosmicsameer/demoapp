@@ -1,0 +1,74 @@
+diff --git a/node_modules/react-native-daterange-picker/src/index.js b/node_modules/react-native-daterange-picker/src/index.js
+index 38517d4..4d47423 100644
+--- a/node_modules/react-native-daterange-picker/src/index.js
++++ b/node_modules/react-native-daterange-picker/src/index.js
+@@ -9,6 +9,7 @@ import {
+   View,
+   Image,
+ } from "react-native";
++import moment from "moment";
+ import Button from "./components/Button";
+ import Day from "./components/Day";
+ import Header from "./components/Header";
+@@ -47,6 +48,7 @@ const DateRangePicker = ({
+   buttonTextStyle,
+   presetButtons,
+   open,
++  backDropCallBackFunc,
+ }) => {
+   const [isOpen, setIsOpen] = useState(false);
+   const [weeks, setWeeks] = useState([]);
+@@ -90,6 +92,7 @@ const DateRangePicker = ({
+ 
+   const _onClose = () => {
+     if (typeof open !== "boolean") onClose();
++    backDropCallBackFunc();
+   };
+ 
+   const onOpen = () => {
+@@ -326,10 +329,7 @@ const DateRangePicker = ({
+   return isOpen ? (
+     <>
+       <View style={mergedStyles.backdrop}>
+-        <TouchableWithoutFeedback
+-          style={styles.closeTrigger}
+-          onPress={_onClose}
+-        >
++        <TouchableWithoutFeedback style={styles.closeTrigger} onPress={null}>
+           <View style={styles.closeContainer} />
+         </TouchableWithoutFeedback>
+         <View>
+@@ -359,6 +359,14 @@ const DateRangePicker = ({
+                 )}
+               </TouchableOpacity>
+             </View>
++            <View style={{flexDirection: 'row'}}>
++              <View style={{flex: 1, alignItems: 'center', borderWidth: 1, padding: 5, borderRadius: 10, marginHorizontal: 10}}>
++                <Text>{'From : '+moment(startDate).format('DD-MM-YYYY')}</Text>
++              </View>
++              <View style={{flex: 1, alignItems: 'center', borderWidth: 1, padding: 5, borderRadius: 10, marginHorizontal: 10}}>
++                <Text>{endDate==null?'To : -':'To : '+moment(endDate).format('DD-MM-YYYY')}</Text>
++              </View>
++            </View>
+             <View style={styles.calendar}>
+               {dayHeaders && (
+                 <View style={styles.dayHeaderContainer}>{dayHeaders}</View>
+@@ -394,6 +402,18 @@ const DateRangePicker = ({
+                 )}
+               </View>
+             )}
++            <View style={{flexDirection: 'row'}}>
++              <View style={{width: '48%'}}>
++                <Button buttonStyle={buttonStyle} buttonTextStyle={buttonTextStyle} onPress={()=>[onChange('reset'), backDropCallBackFunc()]}>
++                  Reset
++                </Button>
++              </View>
++              <View style={{width: '49%'}}>
++                <Button buttonStyle={buttonStyle} buttonTextStyle={buttonTextStyle} onPress={()=>backDropCallBackFunc()}>
++                  Submit
++                </Button>
++              </View>
++            </View>
+           </View>
+         </View>
+       </View>
